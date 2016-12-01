@@ -1,0 +1,12 @@
+#addtodo{
+	background-color: red;
+}
+
+#listatodo{
+	background-color: blue;
+}
+
+#todofatti ul{
+	font-size: 20px;
+	color:red;
+}
