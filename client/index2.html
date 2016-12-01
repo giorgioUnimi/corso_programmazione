@@ -73,29 +73,35 @@
         <form>
   <div class="form-group">
     <label for="name">Nome todo:</label>
-    <input type="text" class="form-control" name="name" placeholder="todo-name">
+    <input type="text" class="form-control" name="name" placeholder="todo-name" ng-model="newTodo.name">
   </div>
   <div class="form-group">
     <label for="description">Descrizione:</label>
-    <input type="text" class="form-control" name="description" placeholder="Descrizione">
+    <input type="text" class="form-control" name="description" placeholder="Descrizione" ng-model="newTodo.desc">
   </div>
   <div class="radio">
   <label>
-    <input type="radio" name="important"  value="true" checked>
+    <input type="radio" name="important"  value="true" checked ng-model="newTodo.important">
     Importante
   </label>
 </div>
 <div class="radio">
   <label>
-    <input type="radio" name="important" value="false">
+    <input type="radio" name="important" value="false" ng-model="newTodo.important">
     Non importante
   </label>
 </div>
+<hr>
+{{newTodo.name}}
+<hr>
+{{newTodo.desc}}
+<hr>
+{{newTodo.important}}
+<hr>
 
 
 
-
-  <button type="submit" class="btn btn-success btn-block" style="margin-bottom: 10px;">Aggiungi</button>
+  <button ng-click="aggiungitodo()" class="btn btn-success btn-block" style="margin-bottom: 10px;">Aggiungi</button>
 </form>
   </div>
 
@@ -109,34 +115,20 @@
             <th>Name</th>
             <th>Descrizione</th>
             <th>Importante</th>
-            <th>Operazioni</th>
+            <th>Done</th>
+             <th>Operazioni</th>
           </tr>
-          <tr>
-            <td>TODO1</td>
-            <td>Descrizion1</td>
-            <td>True/False</td>
-            <td><button type="button" class="btn btn-success btn-xs">fatto</button>
-            <button type="button" class="btn btn-danger btn-xs">cancella</button>
+          <tr ng-repeat="item in todos">
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.important}}</td>
+             <td>{{item.done}}</td>
+            <td><button type="button" class="btn btn-success btn-xs" ng-click="eseguitodo(item.id)" >fatto</button>
+            <button type="button" class="btn btn-danger btn-xs" ng-click="cancellatodo(item.id)">cancella</button>
             </td>
           </tr>
 
-          <tr>
-            <td>TODO1</td>
-            <td>Descrizion1</td>
-            <td>True/False</td>
-            <td><button type="button" class="btn btn-success btn-xs">fatto</button>
-            <button type="button" class="btn btn-danger btn-xs">cancella</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>TODO1</td>
-            <td>Descrizion1</td>
-            <td>True/False</td>
-            <td><button type="button" class="btn btn-success btn-xs">fatto</button>
-            <button type="button" class="btn btn-danger btn-xs">cancella</button>
-            </td>
-          </tr>
+         
 
 
 
@@ -148,9 +140,9 @@
   <!-- colonna todo fatti -->
   <div class="col-lg-4" id="todofatti">
   <h2>Lista todo già fatti</h2>
-      <ul>
-        <li>Todo1</li>
-        <li>Todo2</li>
+      <ul >
+        <li ng-repeat="item1 in todosdone">{{item1.name}} --done :{{item1.done}} </li>
+      
       </ul>
   </div>
 </div>
